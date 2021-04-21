@@ -1,3 +1,27 @@
+/**************************Classe Etudiant****************************************
+**********************************************************************************
+**********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ProjetFinalAQL
+{
+    public class Etudiant
+    {
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Cours { get; set; }
+        public string Notes { get; set; }
+      
+    }
+}
+
+
+/************************************Main*****************************************
+**********************************************************************************
+**********************************************************************************/
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -13,14 +37,28 @@ namespace ProjetFinalAQL
         {
             //on specifie le chemin du fichier text afin de le lire et ecrire la-dedans
             string cheminDuFichierText = @"C:\Users\Houda\Desktop\Assurance_Qualité_Logicielle\DossierEtudiant.txt";
-            
-            List<string> lignes = File.ReadLines(cheminDuFichierText).ToList();
 
-            foreach(String ligne in lignes)
+            List<Etudiant> etudiants = new List<Etudiant>();
+            List<string> lignes = File.ReadAllLines(cheminDuFichierText).ToList();
+
+            foreach(var ligne in lignes)
             {
-                Console.WriteLine(ligne);
-            }
+                string[] entrees = ligne.Split(',');
 
+                Etudiant nouveauEtudiant = new Etudiant();
+
+                nouveauEtudiant.Nom = entrees[0];
+                nouveauEtudiant.Prenom = entrees[1];
+                nouveauEtudiant.Cours = entrees[3];
+                nouveauEtudiant.Notes = entrees[4];
+
+                etudiants.Add(nouveauEtudiant);
+            }
+            
+            foreach(var etudiant in etudiants)
+            {
+                Console.WriteLine($"{ etudiant.Nom} { etudiant.Prenom}: { etudiant.Cours} { etudiant.Notes}");
+            }
 
             Console.ReadLine();
         }
