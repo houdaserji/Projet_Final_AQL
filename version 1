@@ -1,0 +1,28 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProjetFinalAQL
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //on specifie le chemin du fichier text afin de le lire et ecrire la-dedans
+            string cheminDuFichierText = @"C:\Users\Houda\Desktop\Assurance_Qualité_Logicielle\DossierEtudiant.txt";
+            
+            List<string> lignes = File.ReadLines(cheminDuFichierText).ToList();
+
+            foreach(String ligne in lignes)
+            {
+                Console.WriteLine(ligne);
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}
