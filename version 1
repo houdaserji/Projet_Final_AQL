@@ -9,14 +9,103 @@ namespace ProjetFinalAQL
 {
     public class Etudiant
     {
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Cours { get; set; }
-        public string Notes { get; set; }
-      
+       // Classe contient les données mises dans le dossiers étudiant
+        private int identufiantDeLetudiant;
+        private string prenom;
+        private string nom;
+        private Cours cours;
+        private Notes note;
+
+        //constructeur par defaut 
+        public Etudiant()
+        {
+            this.identufiantDeLetudiant = 0;
+            this.prenom = "";
+            this.nom = "";
+            this.note = new Notes();
+        }
+        
+        //Surcharger les constructeurs de cette classe
+        public Etudiant(int idEtudiant, string prenomEtudiant, string nomEtudiant, char lettre, Cours cours)
+        {
+            this.identufiantDeLetudiant = idEtudiant;
+            this.prenom = prenomEtudiant;
+            this.nom = nomEtudiant;
+            this.note = new Notes(lettre);
+            this.cours = cours;
+        }
+
+        //Accesseurs de la classe étudiant
+        public int getIdentificateurEtudiant()
+        {
+            return this.identufiantDeLetudiant;
+        }
+
+        public string getPrenomEtudiant()
+        {
+            return this.prenom;
+        }
+
+        public string getNomEtudiant()
+        {
+            return this.nom;
+        }
+
+        public Cours getCours()
+        {
+            return this.cours;
+        }
+        public Notes getNotes()
+        {
+            return this.note;
+        }
+
+        //cette fontion a pour but d'afficher les étudiants et leurs données
+        public void affichage()
+        {
+            Console.WriteLine(this.identufiantDeLetudiant.ToString().PadRight(10) + this.nom.ToString().PadRight(15) + this.prenom.ToString().PadRight(15)
+                 + this.cours.getNumeroDeCours().ToString().PadRight(15) + this.cours.getTitreDeCours().ToString().PadRight(15) + this.note.getNotes().ToString().PadRight(15));
+        }
+    }
+}
+/*********************************Classe Notes************************************
+**********************************************************************************
+**********************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ProjetFinalAQL
+{
+    // Classe résponsable de la gestion des notes des étudiants
+    class Notes
+    {
+        /*classe permet de convertir la note en chiffre 
+        à une évaluation en lettre*/
+        private char noteEnlettre;
+
+        //un constructeur par défaut 
+        public Notes()
+        {
+            this.noteEnlettre = 'A';
+        }
+        
+        public Notes(char lettre)
+        {
+            this.noteEnlettre = lettre;
+        }
+
+        // Accesseurs de la classe Notes qui permet d'envoyer l'informtion vers le main
+        public char getNotes()
+        {
+            return this.noteEnlettre;
+        }
     }
 }
 
+/**************************Classe Cours*******************************************
+**********************************************************************************
+**********************************************************************************/
 
 /************************************Main*****************************************
 **********************************************************************************
